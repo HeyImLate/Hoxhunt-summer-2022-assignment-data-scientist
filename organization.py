@@ -5,7 +5,7 @@ from typing import List
 import pandas as pd
 
 from config import TABLE_COLUMNS
-from user import DummyUser, User
+from user import QuickLearner, SlowLearner, BusyQuickLearner, BusySlowLearner, User
 
 
 class Organization:
@@ -22,13 +22,28 @@ class Organization:
         ), "Please create your users as subclasses of the abstract User class."
 
     def _populate_organization(self) -> List:
-        # TODO(Task 2):
+        # (Task 2):
         # 1. import your own user types created in Task 1 from the user.py module
         # 2. change this to populate the organization with your own user types
         # 3. change the distribution from uniform to something a bit more realistic
         users = []
         for i in range(self.n_users):
-            users.append(DummyUser())
+            """
+            Population count:
+            QuickLearner ------- 30
+            SlowLearner -------- 30
+            BusyQuickLearner --- 20
+            SlowQuickLearner --- 20
+            """
+            if(i < 30):
+                users.append(QuickLearner())
+            elif(i < 60):
+                users.append(SlowLearner())
+            elif(i < 80):
+                users.append(BusyQuickLearner())
+            else:
+                users.append(BusySlowLearner())
+
         return users
 
     def do_training(self) -> None:
