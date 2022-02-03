@@ -33,7 +33,7 @@ class Organization:
             QuickLearner ------- 30
             SlowLearner -------- 30
             BusyQuickLearner --- 20
-            SlowQuickLearner --- 20
+            BusySlowLearner --- 20
             """
             if(i < 30):
                 users.append(QuickLearner())
